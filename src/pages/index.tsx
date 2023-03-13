@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { useState } from "react";
@@ -8,7 +9,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { api } from "~/utils/api";
-
+import logo from "../assets/logo.png";
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -44,11 +45,16 @@ const Home: NextPage = () => {
           >
             <div className="flex lg:flex-1">
               <a href="#" className="m-1.5 p-1.5">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=sky&shade=200"
-                  alt=""
+                <Image
+                  className="h-8 w-auto background-no-repeat rounded-lg"
+                  src={logo}
+                  alt="balancesheet.me logo"
+                  // width={500} automatically provided
+                  // height={500} automatically provided
+                  // blurDataURL="data:..." automatically provided
+                  placeholder="blur" // Optional blur-up while loading
                 />
+
               </a>
             </div>
             <div className="flex lg:hidden">
@@ -126,7 +132,7 @@ const Home: NextPage = () => {
                       href="#"
                       className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
-                      {sessionData ? "yes" : "no"}
+                      {sessionData ? "Hi, " + sessionData.user?.name : "Log In"}
                     </a>
                   </div>
                 </div>
